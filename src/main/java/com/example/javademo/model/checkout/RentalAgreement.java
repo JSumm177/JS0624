@@ -8,8 +8,7 @@ import java.util.Locale;
 
 
 public class RentalAgreement {
-    private Tool tool = new Tool();
-    public void printAgreement() {
+    public void printAgreement(Tool tool) {
         NumberFormat currencyFormatter = NumberFormat.getCurrencyInstance(Locale.US);
         NumberFormat percentFormatter = NumberFormat.getPercentInstance();
 

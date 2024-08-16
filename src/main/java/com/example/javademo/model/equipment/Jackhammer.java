@@ -12,11 +12,11 @@ import java.math.BigDecimal;
 
 @Getter
 @Setter
-@Entity
 @NoArgsConstructor
+@Entity
 public class Jackhammer extends Tool{
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY) // or other strategies
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private final BigDecimal dailyCharge = BigDecimal.valueOf(2.99);
     private final boolean weekdayCharge = true;
@@ -24,7 +24,7 @@ public class Jackhammer extends Tool{
     private final boolean holidayCharge = false;
 
     public Jackhammer(String brand, String code) {
-        super();
+        super(brand,code);
         this.setType("Jackhammer");
     }
 }

@@ -14,9 +14,9 @@ import java.math.BigDecimal;
 @Setter
 @Entity
 @NoArgsConstructor
-public class Chainsaw extends Tool{
+public class Chainsaw extends Tool {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY) // or other strategies
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private final BigDecimal dailyCharge = BigDecimal.valueOf(1.49);
     private final boolean weekdayCharge = true;
@@ -24,7 +24,7 @@ public class Chainsaw extends Tool{
     private final boolean holidayCharge = true;
 
     public Chainsaw(String brand, String code) {
-        super();
+        super(brand,code);
         this.setType("Chainsaw");
     }
 }

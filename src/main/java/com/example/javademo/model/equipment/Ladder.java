@@ -16,14 +16,14 @@ import java.math.BigDecimal;
 @NoArgsConstructor
 public class Ladder extends Tool{
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY) // or other strategies
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private final BigDecimal dailyCharge = BigDecimal.valueOf(1.99);
     private final boolean weekdayCharge = true;
     private final boolean weekendCharge = true;
     private final boolean holidayCharge = false;
     public Ladder(String brand, String code) {
-        super();
+        super(brand,code);
         this.setType("Ladder");
     }
 }
