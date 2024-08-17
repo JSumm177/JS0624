@@ -70,7 +70,6 @@ class JavaDemoApplicationTests {
         RentalAgreement rentalAgreement = performCheckout(toolCode, rentalDays, discountPercent, checkoutDate);
         rentalAgreement.printAgreement();
 
-        // Assertions
         assertEquals("LADW", rentalAgreement.getCode());
         assertEquals("Ladder", rentalAgreement.getType());
         assertEquals("Werner", rentalAgreement.getBrand());
@@ -99,6 +98,20 @@ class JavaDemoApplicationTests {
         RentalAgreement rentalAgreement = performCheckout(toolCode, rentalDays, discountPercent, checkoutDate);
         rentalAgreement.printAgreement();
 
+        assertEquals("CHNS", rentalAgreement.getCode());
+        assertEquals("Chainsaw", rentalAgreement.getType());
+        assertEquals("Stihl", rentalAgreement.getBrand());
+        assertEquals(5, rentalAgreement.getRentalDays());
+        assertEquals(LocalDate.of(2015, 7, 2), rentalAgreement.getCheckoutDate());
+        assertEquals(LocalDate.of(2015, 7, 7), rentalAgreement.getDueDate());
+        assertEquals(BigDecimal.valueOf(1.49),
+                rentalAgreement.getDailyRentalCharge());
+        assertEquals(3, rentalAgreement.getChargeDays());
+        assertEquals(BigDecimal.valueOf(4.47), rentalAgreement.getPreDiscountCharge());
+        assertEquals(25,
+                rentalAgreement.getDiscountPercent());
+        assertEquals(BigDecimal.valueOf(1.12), rentalAgreement.getDiscountAmount());
+        assertEquals(BigDecimal.valueOf(3.35), rentalAgreement.getFinalCharge());
     }
 
     @Test
@@ -112,6 +125,19 @@ class JavaDemoApplicationTests {
         RentalAgreement rentalAgreement = performCheckout(toolCode, rentalDays, discountPercent, checkoutDate);
         rentalAgreement.printAgreement();
 
+        assertEquals("JAKD", rentalAgreement.getCode());
+        assertEquals("Jackhammer", rentalAgreement.getType());
+        assertEquals("DeWalt", rentalAgreement.getBrand());
+        assertEquals(6, rentalAgreement.getRentalDays());
+        assertEquals(LocalDate.of(2015, 9, 3), rentalAgreement.getCheckoutDate());
+        assertEquals(LocalDate.of(2015, 9, 9), rentalAgreement.getDueDate());
+        assertEquals(BigDecimal.valueOf(2.99),
+                rentalAgreement.getDailyRentalCharge());
+        assertEquals(4, rentalAgreement.getChargeDays());
+        assertEquals(BigDecimal.valueOf(11.96), rentalAgreement.getPreDiscountCharge());
+        assertEquals(0, rentalAgreement.getDiscountPercent());
+        assertEquals("0.00", rentalAgreement.getDiscountAmount().toString());
+        assertEquals(BigDecimal.valueOf(11.96), rentalAgreement.getFinalCharge());
     }
 
     @Test
@@ -138,6 +164,22 @@ class JavaDemoApplicationTests {
 
         RentalAgreement rentalAgreement = performCheckout(toolCode, rentalDays, discountPercent, checkoutDate);
         rentalAgreement.printAgreement();
+
+        assertEquals("JAKR", rentalAgreement.getCode());
+        assertEquals("Jackhammer", rentalAgreement.getType());
+        assertEquals("Ridgid", rentalAgreement.getBrand());
+        assertEquals(4, rentalAgreement.getRentalDays());
+        assertEquals(LocalDate.of(2020, 7, 2), rentalAgreement.getCheckoutDate());
+        assertEquals(LocalDate.of(2020, 7, 6), rentalAgreement.getDueDate());
+        assertEquals(BigDecimal.valueOf(2.99),
+                rentalAgreement.getDailyRentalCharge());
+        assertEquals(2, rentalAgreement.getChargeDays());
+
+        assertEquals(BigDecimal.valueOf(5.98), rentalAgreement.getPreDiscountCharge());
+        assertEquals(50, rentalAgreement.getDiscountPercent());
+        assertEquals(BigDecimal.valueOf(2.99), rentalAgreement.getDiscountAmount());
+        assertEquals(BigDecimal.valueOf(2.99), rentalAgreement.getFinalCharge());
+
     }
 
 
