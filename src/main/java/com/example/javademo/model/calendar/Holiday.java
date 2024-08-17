@@ -11,4 +11,14 @@ public record Holiday(String name, LocalDate date) {
         LocalDate laborDay = LocalDate.of(year, 9, 1).with(TemporalAdjusters.nextOrSame(DayOfWeek.MONDAY));
         return new Holiday("Labor Day", laborDay);
     }
+    public static Holiday getIndependenceDay(int year) {
+        LocalDate independenceDay = LocalDate.of(year, 7, 4);
+        if (independenceDay.getDayOfWeek() == DayOfWeek.SATURDAY) {
+            independenceDay = independenceDay.minusDays(2);
+            // Friday before
+        } else if (independenceDay.getDayOfWeek() == DayOfWeek.SUNDAY) {
+            independenceDay = independenceDay.plusDays(1); // Monday after
+        }
+        return new Holiday("Independence Day", independenceDay);
+    }
 }

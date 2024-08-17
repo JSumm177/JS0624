@@ -1,5 +1,6 @@
 package com.example.javademo.model.equipment;
 
+import com.example.javademo.model.calendar.Holiday;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -9,6 +10,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.math.BigDecimal;
+import java.time.DayOfWeek;
+import java.time.LocalDate;
 
 @Getter
 @Setter
@@ -26,5 +29,23 @@ public class Chainsaw extends Tool {
     public Chainsaw(String brand, String code) {
         super(brand,code);
         this.setType("Chainsaw");
+    }
+
+    public int calculateChargeDays(LocalDate checkoutDate, LocalDate dueDate) {
+        int chargeDays = 0;
+        LocalDate currentDate = checkoutDate;
+
+        while (currentDate.isBefore(dueDate)) {
+            DayOfWeek dayOfWeek = currentDate.getDayOfWeek();
+            boolean isWeekday = dayOfWeek != DayOfWeek.SATURDAY && dayOfWeek != DayOfWeek.SUNDAY;
+            boolean isHoliday = currentDate == Holiday.getIndependenceDay(currentDate.getYear()).date() || currentDate == Holiday.getLaborDay(currentDate.getYear()).date();
+            if (this.isWeekdayCharge() && isWeekday || this.isWeekendCharge() && !isWeekday || this.isHolidayCharge() && isHoliday) {
+                chargeDays++;
+            }
+
+            currentDate = currentDate.plusDays(1);
+        }
+
+        return chargeDays;
     }
 }
