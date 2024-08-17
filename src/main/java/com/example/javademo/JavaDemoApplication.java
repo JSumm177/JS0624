@@ -31,9 +31,9 @@ import java.util.List;
 @EntityScan
 @EnableJpaRepositories
 public class JavaDemoApplication {
-    private ChainsawRepository chainsawRepository;
-    private LadderRepository ladderRepository;
-    private JackhammerRepository jackhammerRepository;
+    private final ChainsawRepository chainsawRepository;
+    private final LadderRepository ladderRepository;
+    private final JackhammerRepository jackhammerRepository;
 
     @Autowired
     public JavaDemoApplication(JavaDemoService javaDemoService, ChainsawRepository chainsawRepository, LadderRepository ladderRepository, JackhammerRepository jackhammerRepository) throws Exception {
@@ -41,11 +41,11 @@ public class JavaDemoApplication {
         this.chainsawRepository = chainsawRepository;
         this.ladderRepository = ladderRepository;
         this.jackhammerRepository = jackhammerRepository;
-        String dateString = "9/3/15";
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("M/d/yy");
-        LocalDate localDate = LocalDate.parse(dateString, formatter);
-        RentalAgreement rentalAgreement = checkout("JAKR",5,10,localDate);
-        rentalAgreement.printAgreement();
+//        String dateString = "9/3/15";
+//        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("M/d/yy");
+//        LocalDate localDate = LocalDate.parse(dateString, formatter);
+//        RentalAgreement rentalAgreement = checkout("JAKR",5,10,localDate);
+//        rentalAgreement.printAgreement();
     }
 
     public static void main(String[] args) {
@@ -82,7 +82,6 @@ public class JavaDemoApplication {
             throw new IllegalStateException("Unexpected tool type: " + tool.getClass());
         }
 
-
         // Calculate charges
         BigDecimal preDiscountCharge = BigDecimal.valueOf(chargeDays).multiply(dailyCharge).setScale(2, RoundingMode.HALF_UP);
         BigDecimal discountAmount = preDiscountCharge.multiply(BigDecimal.valueOf(discountPercent / 100.0)).setScale(2, RoundingMode.HALF_UP);
@@ -102,6 +101,6 @@ public class JavaDemoApplication {
             return ladder;
         }
 
-        return jackhammerRepository.findByCode(code);// Or throw an exception if desired
+        return jackhammerRepository.findByCode(code);
     }
 }
